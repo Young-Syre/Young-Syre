@@ -19,9 +19,9 @@ real report from noise — and my research time on the other side of that, readi
 gives.
 
 Most of what I publish here starts as a bug I found. A sandbox escape becomes a static detector. A
-URL filter I couldn't break becomes a test corpus so nobody has to re-derive it. A report closed as
-unreproducible becomes a tool that verifies a proof-of-concept's assumptions against live state
-before it ships.
+URL filter I couldn't break becomes a test corpus so nobody has to re-derive it. A proof-of-concept
+that quietly depended on on-chain state becomes a tool that re-checks those assumptions against live
+state before the report ships.
 
 ### Tools
 
@@ -35,13 +35,14 @@ before it ships.
 | [**writeup-scrub**](https://github.com/Young-Syre/writeup-scrub) | Sanitises CTF and security writeups before publication, and refuses to publish one for a machine that is still active. | Python · stdlib |
 | [**scope-guard**](https://github.com/Young-Syre/scope-guard) | Offline, auditable in-scope/out-of-scope decisions for bug bounty targets. Makes no network requests and touches nothing. | Python · stdlib |
 | [**fork-state-guard**](https://github.com/Young-Syre/fork-state-guard) | Verifies the on-chain assumptions a smart-contract PoC depends on against live state, including EIP-1967 proxy implementations. Read-only, no signing. | Python · stdlib |
+| [**cors-matrix**](https://github.com/Young-Syre/cors-matrix) | Works out what a CORS policy actually is from recorded origin/response observations, then grades what is exploitable — reflection with credentials, suffix matching, port-blind comparison. | TypeScript · zero deps |
 | [**bundle-recon**](https://github.com/Young-Syre/bundle-recon) | Recovers attack surface from built JavaScript — source maps, Next.js route manifests, webpack chunk maps, typed endpoints — with a credential scanner gated on an entropy floor. | TypeScript · acorn |
 
 ### Writeups
 
 [**htb-writeups**](https://github.com/Young-Syre/htb-writeups) — retired Hack The Box machines, written while
-solving them. Easy through Insane, Linux and Windows. Flags omitted per HTB policy; nothing here
-touches an active machine.
+solving them. Easy through Hard, Linux and Windows, with the dead ends kept in. Flags omitted per
+HTB policy; nothing here touches an active machine.
 
 <details>
 <summary><strong>What I work with</strong></summary>
