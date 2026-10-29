@@ -30,7 +30,6 @@ before it ships.
 | [**node-sandbox-audit**](https://github.com/Young-Syre/node-sandbox-audit) | Finds incomplete module denylists and leaky contexts in `vm` / `isolated-vm` sandboxes. Generalised from a sandbox escape I reported, where the denylist blocked `child_process` but not `node:vm`. | TypeScript · SARIF |
 | [**ssrf-filter-corpus**](https://github.com/Young-Syre/ssrf-filter-corpus) | A verified corpus and harness for SSRF allow/deny filters, built on what the WHATWG URL parser normalises *before* your filter runs — and the IPv6 transition forms it doesn't. | TypeScript · zero deps |
 | [**appsec-semgrep-rules**](https://github.com/Young-Syre/appsec-semgrep-rules) | Semgrep rules for bug classes I've actually found, each with true-positive and safe-counterexample fixtures. | Semgrep · YAML |
-| [**bundle-recon**](https://github.com/Young-Syre/bundle-recon) | Recovers attack surface from built JavaScript — source maps, Next.js route manifests, webpack chunk maps, typed endpoints. | TypeScript |
 | [**scope-guard**](https://github.com/Young-Syre/scope-guard) | Offline, auditable in-scope/out-of-scope decisions for bug bounty targets. Makes no network requests and touches nothing. | Python · stdlib |
 | [**fork-state-guard**](https://github.com/Young-Syre/fork-state-guard) | Verifies the on-chain assumptions a smart-contract PoC depends on against live state, including EIP-1967 proxy implementations. Read-only, no signing. | Python · stdlib |
 
