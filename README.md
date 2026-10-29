@@ -35,6 +35,7 @@ before it ships.
 | [**writeup-scrub**](https://github.com/Young-Syre/writeup-scrub) | Sanitises CTF and security writeups before publication, and refuses to publish one for a machine that is still active. | Python · stdlib |
 | [**scope-guard**](https://github.com/Young-Syre/scope-guard) | Offline, auditable in-scope/out-of-scope decisions for bug bounty targets. Makes no network requests and touches nothing. | Python · stdlib |
 | [**fork-state-guard**](https://github.com/Young-Syre/fork-state-guard) | Verifies the on-chain assumptions a smart-contract PoC depends on against live state, including EIP-1967 proxy implementations. Read-only, no signing. | Python · stdlib |
+| [**bundle-recon**](https://github.com/Young-Syre/bundle-recon) | Recovers attack surface from built JavaScript — source maps, Next.js route manifests, webpack chunk maps, typed endpoints — with a credential scanner gated on an entropy floor. | TypeScript · acorn |
 
 ### Writeups
 
