@@ -67,6 +67,7 @@ fixtures that prove both directions — that it fires on the defect and stays qu
 | Project | What it does | Stack |
 |---|---|---|
 | [**fork-state-guard**](https://github.com/Young-Syre/fork-state-guard) | Verifies the on-chain assumptions a PoC depends on against live state, including EIP-1967 proxy implementations. Read-only, no signing. | Python · stdlib |
+| [**selector-collide**](https://github.com/Young-Syre/selector-collide) | Finds function-selector collisions: a proxy shadowing its implementation, two diamond facets claiming one selector, an allowlist keyed on four bytes. Keccak-256 written from scratch and checked against a second implementation. | Python · stdlib |
 
 **Rules and working discipline**
 
