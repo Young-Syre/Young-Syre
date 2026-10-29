@@ -25,8 +25,16 @@ state before the report ships.
 
 ### Tools
 
-Each of these started from a bug class worth understanding properly, and each one is tested against
-fixtures that prove both directions — that it fires on the defect and stays quiet on the fix.
+[**appsec-workbench**](https://github.com/Young-Syre/appsec-workbench) is the largest of these: a
+CLI web application security workbench — intercepting proxy, replay, fuzzing, 24 passive and 11
+active checks, a self-hosted out-of-band listener, a real browser, and an AI triage layer whose
+output is schema-constrained because its input is attacker-controlled. Scope is deny by default and
+enforced where the packets are, so a host it has not cleared is tunnelled without ever being
+decrypted. TypeScript, zero runtime dependencies. · 579 tests
+
+The rest are single-purpose. Each started from a bug class worth understanding properly, and each is
+tested against fixtures that prove both directions — that it fires on the defect and stays quiet on
+the fix.
 
 **Web and application security**
 
