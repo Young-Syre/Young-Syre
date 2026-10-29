@@ -25,18 +25,56 @@ state before the report ships.
 
 ### Tools
 
+Each of these started from a bug class worth understanding properly, and each one is tested against
+fixtures that prove both directions — that it fires on the defect and stays quiet on the fix.
+
+**Web and application security**
+
 | Project | What it does | Stack |
 |---|---|---|
-| [**node-sandbox-audit**](https://github.com/Young-Syre/node-sandbox-audit) | Finds incomplete module denylists and leaky contexts in `vm` / `isolated-vm` sandboxes. Generalised from a sandbox escape I reported, where the denylist blocked `child_process` but not `node:vm`. | TypeScript · SARIF |
+| [**cors-matrix**](https://github.com/Young-Syre/cors-matrix) | Works out what a CORS policy actually *is* from recorded origin/response observations, then grades what is exploitable. Grades wildcard-plus-credentials low, because browsers reject it. | TypeScript · zero deps |
+| [**cache-key-lint**](https://github.com/Young-Syre/cache-key-lint) | Infers a cache's real key from HTTP captures, then grades what that leaves unkeyed — poisoning via headers the key drops, deception via extensions the origin ignores. | TypeScript · zero deps |
+| [**proto-pollution-probe**](https://github.com/Young-Syre/proto-pollution-probe) | Pairs prototype-pollution sinks with the gadgets that make them exploitable. Recognises guards, so a `hasOwnProperty` check or a null-prototype object is not reported. | TypeScript · acorn · SARIF |
 | [**ssrf-filter-corpus**](https://github.com/Young-Syre/ssrf-filter-corpus) | A verified corpus and harness for SSRF allow/deny filters, built on what the WHATWG URL parser normalises *before* your filter runs — and the IPv6 transition forms it doesn't. | TypeScript · zero deps |
-| [**appsec-semgrep-rules**](https://github.com/Young-Syre/appsec-semgrep-rules) | Semgrep rules for bug classes I've actually found, each with true-positive and safe-counterexample fixtures. | Semgrep · YAML |
 | [**har-diff**](https://github.com/Young-Syre/har-diff) | Turns two HAR captures at different privilege levels into an authorisation (IDOR/BOLA) test plan. Redacts credentials by default. | TypeScript · zero deps |
-| [**rls-probe**](https://github.com/Young-Syre/rls-probe) | Audits Postgres row-level-security posture — views missing `security_invoker`, unforced RLS, `SECURITY DEFINER` functions exposed through PostgREST. Read-only. | Python |
-| [**writeup-scrub**](https://github.com/Young-Syre/writeup-scrub) | Sanitises CTF and security writeups before publication, and refuses to publish one for a machine that is still active. | Python · stdlib |
-| [**scope-guard**](https://github.com/Young-Syre/scope-guard) | Offline, auditable in-scope/out-of-scope decisions for bug bounty targets. Makes no network requests and touches nothing. | Python · stdlib |
-| [**fork-state-guard**](https://github.com/Young-Syre/fork-state-guard) | Verifies the on-chain assumptions a smart-contract PoC depends on against live state, including EIP-1967 proxy implementations. Read-only, no signing. | Python · stdlib |
-| [**cors-matrix**](https://github.com/Young-Syre/cors-matrix) | Works out what a CORS policy actually is from recorded origin/response observations, then grades what is exploitable — reflection with credentials, suffix matching, port-blind comparison. | TypeScript · zero deps |
-| [**bundle-recon**](https://github.com/Young-Syre/bundle-recon) | Recovers attack surface from built JavaScript — source maps, Next.js route manifests, webpack chunk maps, typed endpoints — with a credential scanner gated on an entropy floor. | TypeScript · acorn |
+| [**bundle-recon**](https://github.com/Young-Syre/bundle-recon) | Recovers attack surface from built JavaScript — source maps, route manifests, chunk maps, typed endpoints — with a credential scanner gated on an entropy floor. | TypeScript · acorn |
+
+**Authentication and identity**
+
+| Project | What it does | Stack |
+|---|---|---|
+| [**jwt-confusion**](https://github.com/Young-Syre/jwt-confusion) | Analyses what a JWT tells you about its verifier, and *computes* the answer where it can — HS/RS key confusion and embedded-JWK self-signing are confirmed, not guessed. Never fetches a `jku`. | TypeScript · node:crypto |
+| [**oauth-flow-lint**](https://github.com/Young-Syre/oauth-flow-lint) | Lints an OAuth/OIDC configuration as a whole, so combinations escalate: a loose redirect URI plus implicit flow is one critical finding rather than two mediums to join by hand. | Python · stdlib |
+| [**saml-xsw-lint**](https://github.com/Young-Syre/saml-xsw-lint) | Finds the signature-wrapping positions, dangerous transforms and unchecked assertion conditions that let a correct signature verifier still be fooled. Refuses DOCTYPE and entity declarations outright. | Python · stdlib |
+
+**Sandboxes and runtimes**
+
+| Project | What it does | Stack |
+|---|---|---|
+| [**node-sandbox-audit**](https://github.com/Young-Syre/node-sandbox-audit) | Finds incomplete module denylists and leaky contexts in `vm` / `isolated-vm` sandboxes. Reads the options object, so a context with code generation disabled is graded accordingly. | TypeScript · SARIF |
+| [**wasm-capability-audit**](https://github.com/Young-Syre/wasm-capability-audit) | Parses the WebAssembly binary format from scratch to classify every import into a host capability, and diffs capability drift between two builds. No `unsafe`, no crates. | Rust · std only |
+
+**Cloud, data and mobile**
+
+| Project | What it does | Stack |
+|---|---|---|
+| [**rbac-paths**](https://github.com/Young-Syre/rbac-paths) | Finds Kubernetes privilege-escalation paths in `kubectl` JSON dumps — `patch` on a workload is pod creation one reconcile later. Models `resourceNames` and the 1.24 token change. | Python · stdlib |
+| [**rls-probe**](https://github.com/Young-Syre/rls-probe) | Audits Postgres row-level-security posture — views missing `security_invoker`, unforced RLS, `SECURITY DEFINER` functions exposed through PostgREST. Read-only. | Python · stdlib |
+| [**android-attack-surface**](https://github.com/Young-Syre/android-attack-surface) | Resolves which components are actually reachable, against the `targetSdk`-dependent `exported` defaults, and expands every deeplink filter into the concrete URI set it accepts. | Python · stdlib |
+
+**Smart contracts**
+
+| Project | What it does | Stack |
+|---|---|---|
+| [**fork-state-guard**](https://github.com/Young-Syre/fork-state-guard) | Verifies the on-chain assumptions a PoC depends on against live state, including EIP-1967 proxy implementations. Read-only, no signing. | Python · stdlib |
+
+**Rules and working discipline**
+
+| Project | What it does | Stack |
+|---|---|---|
+| [**appsec-semgrep-rules**](https://github.com/Young-Syre/appsec-semgrep-rules) | Rules written from the defect end rather than the CWE end — each message explains the mechanism, and each rule ships the vulnerable shape beside the fixed one. | Semgrep · YAML |
+| [**scope-guard**](https://github.com/Young-Syre/scope-guard) | Offline, auditable in-scope/out-of-scope decisions for bounty targets. Makes no network request and touches no target. | Python · stdlib |
+| [**writeup-scrub**](https://github.com/Young-Syre/writeup-scrub) | Sanitises writeups before publication, and refuses to publish one for a machine that is still active. | Python · stdlib |
 
 ### Writeups
 
