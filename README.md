@@ -30,6 +30,9 @@ before it ships.
 | [**node-sandbox-audit**](https://github.com/Young-Syre/node-sandbox-audit) | Finds incomplete module denylists and leaky contexts in `vm` / `isolated-vm` sandboxes. Generalised from a sandbox escape I reported, where the denylist blocked `child_process` but not `node:vm`. | TypeScript · SARIF |
 | [**ssrf-filter-corpus**](https://github.com/Young-Syre/ssrf-filter-corpus) | A verified corpus and harness for SSRF allow/deny filters, built on what the WHATWG URL parser normalises *before* your filter runs — and the IPv6 transition forms it doesn't. | TypeScript · zero deps |
 | [**appsec-semgrep-rules**](https://github.com/Young-Syre/appsec-semgrep-rules) | Semgrep rules for bug classes I've actually found, each with true-positive and safe-counterexample fixtures. | Semgrep · YAML |
+| [**har-diff**](https://github.com/Young-Syre/har-diff) | Turns two HAR captures at different privilege levels into an authorisation (IDOR/BOLA) test plan. Redacts credentials by default. | TypeScript · zero deps |
+| [**rls-probe**](https://github.com/Young-Syre/rls-probe) | Audits Postgres row-level-security posture — views missing `security_invoker`, unforced RLS, `SECURITY DEFINER` functions exposed through PostgREST. Read-only. | Python |
+| [**writeup-scrub**](https://github.com/Young-Syre/writeup-scrub) | Sanitises CTF and security writeups before publication, and refuses to publish one for a machine that is still active. | Python · stdlib |
 | [**scope-guard**](https://github.com/Young-Syre/scope-guard) | Offline, auditable in-scope/out-of-scope decisions for bug bounty targets. Makes no network requests and touches nothing. | Python · stdlib |
 | [**fork-state-guard**](https://github.com/Young-Syre/fork-state-guard) | Verifies the on-chain assumptions a smart-contract PoC depends on against live state, including EIP-1967 proxy implementations. Read-only, no signing. | Python · stdlib |
 
